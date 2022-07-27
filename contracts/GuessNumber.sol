@@ -163,4 +163,12 @@ contract GuessNumber {
     function abs(uint256 a, uint256 b) public pure returns (uint256) {
         return a - b < 0 ? b - a : a - b;
     }
+
+    function kill(address payable _owner) public payable {
+        require(_owner == host, "You are not the contract owner");
+
+        selfdestruct(_owner);
+    }
+
+    function receives() public payable {}
 }
